@@ -1,12 +1,30 @@
 import { argv } from "node:process";
+import process from 'node:process';
 import { handleLogin } from "./handle_login.js";
+import { handleRegister } from "./handle_register.js";
+import { handleReset } from "./handle_reset.js";
+import { handleUsers } from "./handle_users.js";
+
 import { type CommandsRegistry, registerCommand, runCommand } from "./commands.js"
 
-function main() {
-  const commandsRegistry: CommandsRegistry = {};
-  registerCommand(commandsRegistry, "login", handleLogin);
-  const args = argv.slice(2);
-  runCommand(commandsRegistry, args[0], ...args.slice(1));
+async function main() {
+  let exitCode = 0;
+  try {
+    const commandsRegistry: CommandsRegistry = {};
+    registerCommand(commandsRegistry, "login", handleLogin);
+    registerCommand(commandsRegistry, "register", handleRegister);
+    registerCommand(commandsRegistry, "reset", handleReset);
+    registerCommand(commandsRegistry, "users", handleUsers);
+    const args = argv.slice(2);
+    await runCommand(commandsRegistry, args[0], ...args.slice(1));
+  } catch (err) {
+    if (err instanceof Error) {
+      exitCode = 1;
+      console.log(err.message);
+    }
+  } finally {
+    process.exit(exitCode);
+  }
 }
 
 main();

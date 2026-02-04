@@ -1,8 +1,14 @@
-import { setUser } from "./config.js"
+import { setUser } from "./config.js";
+import { getUser } from "./lib/db/queries/users.js";
 
-export function handleLogin(cmdName: string, ...args: string[]) {
+export async function handleLogin(cmdName: string, ...args: string[]) {
   if (args.length === 0) {
     throw new Error("The login handler expects a single argument, the username.");
+  }
+
+  const existingUser = await getUser(args[0]);
+  if (existingUser.name != args[0]) {
+    throw new Error("User does not exist.")
   }
 
   setUser(args[0]);
