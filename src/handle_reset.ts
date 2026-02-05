@@ -1,6 +1,8 @@
 import { deleteUsers } from "./lib/db/queries/users.js";
+import { deleteFeeds } from "./lib/db/queries/feeds.js";
 
 export async function handleReset() {
   await deleteUsers();
-  console.log("Database users table is cleared.")
+  await deleteFeeds();
+  console.log("Database users and feeds tables are cleared.");
 }

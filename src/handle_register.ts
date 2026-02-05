@@ -12,7 +12,7 @@ export async function handleRegister(cmdName: string, ...args: string[]) {
   }
 
   const newUser = await createUser(args[0]);
-  setUser(args[0]);
+  setUser(newUser.name);
 
-  console.log(`User ${args[0]} is created: ${newUser}`);
+  console.log(`User ${args[0]} is created: ${newUser.name}`);
 }

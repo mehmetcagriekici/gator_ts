@@ -4,6 +4,9 @@ import { handleLogin } from "./handle_login.js";
 import { handleRegister } from "./handle_register.js";
 import { handleReset } from "./handle_reset.js";
 import { handleUsers } from "./handle_users.js";
+import { handleAgg } from "./handle_agg.js";
+import { handleAddFeed } from "./handle_addfeed.js";
+import { handleFeeds } from "./handle_feeds.js";
 
 import { type CommandsRegistry, registerCommand, runCommand } from "./commands.js"
 
@@ -15,6 +18,10 @@ async function main() {
     registerCommand(commandsRegistry, "register", handleRegister);
     registerCommand(commandsRegistry, "reset", handleReset);
     registerCommand(commandsRegistry, "users", handleUsers);
+    registerCommand(commandsRegistry, "agg", handleAgg);
+    registerCommand(commandsRegistry, "addfeed", handleAddFeed);
+    registerCommand(commandsRegistry, "feeds", handleFeeds);
+    
     const args = argv.slice(2);
     await runCommand(commandsRegistry, args[0], ...args.slice(1));
   } catch (err) {
