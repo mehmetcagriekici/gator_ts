@@ -12,6 +12,7 @@ export async function runCommand(registry: CommandsRegistry, cmdName: string, ..
   if (!registry[cmdName]) {
     throw new Error("Invalid Command");
   }
-
-  await registry[cmdName](cmdName, ...args);
+  
+  const fn = await registry[cmdName];
+  await fn(cmdName, ...args);
 }
