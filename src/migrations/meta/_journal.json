@@ -36,6 +36,27 @@
       "when": 1770303924255,
       "tag": "0004_fine_peter_quill",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1770358433098,
+      "tag": "0005_orange_raider",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1770360643240,
+      "tag": "0006_slow_carmella_unuscione",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1770361448125,
+      "tag": "0007_futuristic_firedrake",
+      "breakpoints": true
     }
   ]
 }

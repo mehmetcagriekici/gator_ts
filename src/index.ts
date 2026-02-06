@@ -1,5 +1,6 @@
 import { argv } from "node:process";
 import process from 'node:process';
+
 import { handleLogin } from "./handle_login.js";
 import { handleRegister } from "./handle_register.js";
 import { handleReset } from "./handle_reset.js";
@@ -10,6 +11,7 @@ import { handleFeeds } from "./handle_feeds.js";
 import { handleFollow } from "./handle_follow.js";
 import { handleFollowing } from "./handle_following.js";
 import { handleUnfollow } from "./handle_unfollow.js";
+import { handleBrowse } from "./handle_browse.js";
 import { middlewareLoggedIn } from "./middleware.js";
 
 import { type CommandsRegistry, registerCommand, runCommand } from "./commands.js";
@@ -28,6 +30,7 @@ async function main() {
     registerCommand(commandsRegistry, "follow", middlewareLoggedIn(handleFollow));
     registerCommand(commandsRegistry, "following", middlewareLoggedIn(handleFollowing));
     registerCommand(commandsRegistry, "unfollow", middlewareLoggedIn(handleUnfollow));
+    registerCommand(commandsRegistry, "browse", handleBrowse);
     
     const args = argv.slice(2);
     await runCommand(commandsRegistry, args[0], ...args.slice(1));
